@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>DevOps User Dashboard</h1>
+
+        <div class="login-box">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button>Login</button>
+        </div>
+
+        <div class="users-section">
+            <h2>Users</h2>
+            <button onclick="loadUsers()">Fetch Users</button>
+
+            <ul id="userList"></ul>
+        </div>
+    </div>
+
+    <script>
+        async function loadUsers() {
+            try {
+                const response = await fetch("http://localhost:3000/users");
+                const users = await response.json();
+
+                const userList = document.getElementById("userList");
+                userList.innerHTML = "";
+
+                users.forEach(user => {
+                    const li = document.createElement("li");
+                    li.textContent = `${user.id} - ${user.name}`;
+                    userList.appendChild(li);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+</html>
