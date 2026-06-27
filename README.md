@@ -1,68 +1,94 @@
 # DevOps User Dashboard
 
-A simple full-stack application built to practice core DevOps concepts including Linux, Git, GitHub, Docker, and containerized application deployment.
+A hands-on DevOps learning project that demonstrates how to build, containerize, and manage a simple full-stack application using modern DevOps tools and practices.
 
 ## Project Overview
 
 This project consists of:
 
-* Frontend: Static HTML/CSS dashboard
+* Frontend: HTML, CSS
 * Backend: Node.js + Express REST API
 * Dockerized frontend using Nginx
 * Dockerized backend using Node.js
+* Multi-container management using Docker Compose
 
-The goal of this project is to build a foundation for future DevOps topics such as Docker Compose, GitHub Actions, Terraform, AWS, and Kubernetes.
+This project is being built step by step to learn real-world DevOps workflows, from local development to cloud deployment and Kubernetes.
 
 ---
 
-## Project Structure
+# Architecture
+
+```
+                Browser
+                    │
+          http://localhost:8080
+                    │
+                    ▼
+          +------------------+
+          | Frontend (Nginx) |
+          +------------------+
+                    │
+         HTTP Requests (API)
+                    │
+                    ▼
+        +----------------------+
+        | Backend (Node.js)    |
+        | Express REST API     |
+        +----------------------+
+```
+
+---
+
+# Project Structure
 
 ```text
 devops-project/
-
+│
 ├── frontend/
+│   ├── Dockerfile
 │   ├── index.html
-│   ├── style.css
-│   └── Dockerfile
+│   └── style.css
 │
 ├── backend/
+│   ├── Dockerfile
 │   ├── app.js
 │   ├── package.json
-│   └── Dockerfile
+│   └── package-lock.json
 │
+├── compose.yaml
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## Features
+# Features
 
-### Backend API
+## Frontend
 
+* Responsive HTML/CSS UI
+* Fetch users from backend API
+* Simple dashboard
+
+## Backend
+
+* Express.js REST API
 * Health Check Endpoint
 * Get Users Endpoint
 * Create User Endpoint
-* Express.js REST API
-* CORS Enabled
-
-### Frontend
-
-* Simple User Dashboard
-* Fetch Users Button
-* API Integration Using Fetch API
+* CORS enabled
 
 ---
 
-## API Endpoints
+# API Endpoints
 
-### Health Check
+## Health Check
 
 ```http
 GET /health
 ```
 
-Response:
+Response
 
 ```json
 {
@@ -70,129 +96,114 @@ Response:
 }
 ```
 
-### Get Users
+---
+
+## Get Users
 
 ```http
 GET /users
 ```
 
-Response:
+---
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Sanjay"
-  }
-]
-```
-
-### Create User
+## Create User
 
 ```http
 POST /users
 ```
 
-Request:
+Request
 
 ```json
 {
-  "name": "John"
-}
-```
-
-Response:
-
-```json
-{
-  "id": 2,
   "name": "John"
 }
 ```
 
 ---
 
-## Running Locally
+# Running Locally
 
-### Backend
+## Backend
 
 ```bash
 cd backend
-
 npm install
-
 node app.js
 ```
 
-Backend URL:
+Backend
 
-```text
+```
 http://localhost:3000
 ```
 
-### Frontend
+---
+
+## Frontend
 
 ```bash
 cd frontend
-
 python3 -m http.server 8000
 ```
 
-Frontend URL:
+Frontend
 
-```text
+```
 http://localhost:8000
 ```
 
 ---
 
-## Docker
+# Docker
 
-### Build Frontend Image
+## Build Frontend
 
 ```bash
 cd frontend
-
 docker build -t frontend:v1 .
 ```
 
-### Run Frontend Container
+## Run Frontend
 
 ```bash
 docker run -d -p 8080:80 --name frontend frontend:v1
 ```
 
-Frontend URL:
-
-```text
-http://localhost:8080
-```
-
 ---
 
-### Build Backend Image
+## Build Backend
 
 ```bash
 cd backend
-
 docker build -t backend:v1 .
 ```
 
-### Run Backend Container
+## Run Backend
 
 ```bash
 docker run -d -p 3000:3000 --name backend backend:v1
 ```
 
-Backend URL:
+---
 
-```text
-http://localhost:3000
+# Docker Compose
+
+Start the complete application
+
+```bash
+docker compose up --build
+```
+
+Stop all containers
+
+```bash
+docker compose down
 ```
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 * Linux (WSL)
 * Git
@@ -203,38 +214,45 @@ http://localhost:3000
 * Node.js
 * Express.js
 * Docker
+* Docker Compose
 * Nginx
 
 ---
 
-## DevOps Learning Roadmap
+# Learning Progress
 
-Completed:
+## Completed
 
 * Linux Basics
-* Git & GitHub
+* Git Fundamentals
+* GitHub
 * REST API Development
-* Docker Fundamentals
+* HTML/CSS Frontend
 * Docker Images
 * Docker Containers
-
-Upcoming:
-
+* Dockerfiles
 * Docker Compose
-* GitHub Actions CI/CD
-* Terraform
+
+## Coming Next
+
+* GitHub Actions (CI)
+* Docker Hub
 * AWS EC2
 * AWS IAM
 * AWS VPC
 * AWS S3
-* AWS Load Balancer
+* Application Load Balancer
 * AWS CloudWatch
+* Terraform
 * Kubernetes
 
 ---
 
-## Author
+# Author
 
-Sanjay
+**Sanjay**
 
-DevOps & Cloud Engineering Learning Project
+Cloud & DevOps Engineer Portfolio Project
+
+Built as part of a structured journey toward Cloud and DevOps Engineering.
+
